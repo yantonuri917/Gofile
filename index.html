@@ -1,74 +1,193 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-   <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgQywLAkF5Vr90udvBOL8ebIpx7K7txbJ_WbSJtHor_GHB4sO7MR0XLQBuhxeL1eIa4HTtfcVs-ep9zCBk287B1j_XB4uzUvNbPpe8bspPUf7O035_iMDgyC8xZUwHuqX2JBKsUSQbj6P4eCCRRnqzhAH_UHPF97Yy0cBLh2zaq73xiRvkVs9-ZOvsRBx-Z/s1080/IMG_20250926_103753.jpg"/>
+  <!-- Meta untuk social media -->
 
-  <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjaFRRI0eGFc2cisj8WawsCs_8H2AXj5H7BBFPzaZJSRGYfibMEzJIgrxy9Dvp1ZjsYrn1VfY9iuijB6Ei9kt1K1cjS2YDhyYIMdJaJjUKisuPSGrZRl8wfUlAZMDEschiKbRyoZ4oEQMcvJ2vx0HHfPkTx8bEVIPj5lmzXFB3VPchU7oOBimKDn9J2bs/s664/GIF_20241227_192138_546.gif"/>
+<meta property="og:title" content="video🔞">
+
+<meta property="og:description" content="18+ Videos 🔞">
+
+<meta property="og:image" content="https://iili.io/KXYKoBf.jpg">
+
+<meta property="og:type" content="video.other">
+
+<meta property="og:url" content="https://example.com/page.html">
+
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="twitter:title" content="video 🔞">
+
+<meta name="twitter:description" content="18+ Videos 🔞">
+
+<meta name="https://iili.io/KXYKoBf.jpg">
+
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>vercel</title>
-<!-- 🔄 Redirect Otomatis + Efek Fade -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      setTimeout(function () {
-        document.body.classList.add('fade-out');
-        setTimeout(function () {
-          window.location.href = "https://chasapp750.blogspot.com";
-        }, 800);
-      }, 000);
-    });
-  </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>video🔞</title>
   <style>
     body {
+      margin: 0;
+      font-family: Arial, sans-serif;
       background: #000;
       color: #fff;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      margin-top: 40vh;
-      transition: opacity 0.8s ease;
     }
-    body.fade-out {
-      opacity: 0;
+    .movies {
+      padding: 15px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+      gap: 10px;
     }
-    .loader {
+    .movie {
+      position: relative;
+      background: #111;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .movie img {
+      width: 100%;
+      aspect-ratio: 1/1; /* kotak */
+      object-fit: cover;
+      display: block;
+    }
+    .play-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
       width: 40px;
       height: 40px;
-      border: 5px solid #444;
-      border-top: 5px solid #fff;
+      background: rgba(255, 0, 0, 0.8);
       border-radius: 50%;
-      margin: 0 auto 15px;
-      animation: spin 1s linear infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
     }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .play-btn::before {
+      content: '';
+      margin-left: 4px;
+      border-style: solid;
+      border-width: 8px 0 8px 14px;
+      border-color: transparent transparent transparent #fff;
+    }
+    /* Popup */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .popup iframe {
+      width: 80%;
+      height: 60%;
+    }
+    .popup.active { display: flex; }
+    .close {
+      position: absolute;
+      top: 20px; right: 20px;
+      font-size: 24px;
+      color: #fff;
+      cursor: pointer;
     }
   </style>
 </head>
-
 <body>
-  <div class="loader"></div>
-  <p>loading...</p>
-  <!-- 📊 Histats Tracking -->
-  <script type="text/javascript">
-    var _Hasync = _Hasync || [];
-    _Hasync.push(['Histats.start', '1,4978236,4,0,0,0,00000000']);
-    _Hasync.push(['Histats.fasi', '1']);
-    _Hasync.push(['Histats.track_hits', '']);
-    (function() {
-      var hs = document.createElement('script');
-      hs.type = 'text/javascript';
-      hs.async = true;
-      hs.src = ('//s10.histats.com/js15_as.js');
-      (document.head || document.body).appendChild(hs);
-    })();
-  </script>
-  <noscript>
-    <a href="/" target="_blank">
-      <img src="//sstatic1.histats.com/0.gif?4978236&101" alt="hit counter" border="0">
-    </a>
-  </noscript>
-  
+
+<div class="movies" id="movieGrid"></div>
+
+<div class="popup" id="popup">
+  <span class="close" id="closePopup">&times;</span>
+  <iframe id="trailerFrame" src="" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<script>
+  const movies = [
+    {poster: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEihCS-TsSlpQdiHH7Cd1w4JaAW-LjzYyAavuc6h4Y3bkHUIEr5Hbvm_pc0P81UEpmGMJ8Vpcaycmj3rPB7s31lHVLFmsF9JJMey4NjibhEPylbwvmGYXY0PgjgsW6NXkLAErBrl_q475zq9p4mpTLpH5Ywy-QFsJHB32PnFOjDhP7wPo8AOfuAYQK4mhlOw/s733/IMG_20251002_120517.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/K1PoNKg.jpg", trailer: "https://movie18new.netlify.app/?src=videas&id=06601e5e-ee42-4a29-8f02-d35efaa7d952"},
+    {poster: "https://iili.io/K1PQRs9.jpg", trailer: "https://movie18new.netlify.app/?src=videas&id=f5d19ea0-1eb5-48b7-abf6-6cb6af7e7433"},
+    {poster: "https://iili.io/KVKaLwN.jpg", trailer: "https://movie18new.netlify.app/?src=videas&id=2ae3dd50-9264-4b5a-b519-10f36327c39b"},
+    {poster: "https://iili.io/KVK02C7.webp", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/KVKErpj.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/KVKVpyu.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/K1PzvZN.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/K1gAqwN.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/KVKNBIe.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/KVKvtx1.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/KVfX2Tu.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/KVfhkfR.webp", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/KVfNNWu.webp", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/KVfvnmN.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/KVfgvHJ.webp", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/KVf6Xol.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/KVfLZ1p.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+    {poster: "https://iili.io/KVq9GrG.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+      {poster: 
+    "https://iili.io/KVqC4Xj.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"},
+      {poster: "https://iili.io/KVqIQO7.jpg", trailer: "https://referredrender.com/xzinj81t?key=032159a25f5547da9978002851e26e24"}
+  ];
+
+  const grid = document.getElementById("movieGrid");
+  movies.forEach(movie => {
+    const div = document.createElement("div");
+    div.classList.add("movie");
+    div.innerHTML = `
+      <img src="${movie.poster}" alt="Poster Film">
+      <div class="play-btn" data-trailer="${movie.trailer}"></div>
+    `;
+    grid.appendChild(div);
+  });
+
+  const popup = document.getElementById("popup");
+  const trailerFrame = document.getElementById("trailerFrame");
+  const closePopup = document.getElementById("closePopup");
+  const adUrl = "https://ethicultimatum.com/xzinj81t?key=032159a25f5547da9978002851e26e24"; // ganti link iklanmu
+
+  // buka popup trailer
+  document.addEventListener("click", e => {
+    if (e.target.classList.contains("play-btn")) {
+      const trailer = e.target.getAttribute("data-trailer");
+      window.open(adUrl, "_blank"); // buka iklan sekali
+      trailerFrame.src = trailer;
+      popup.classList.add("active");
+    }
+  });
+
+  // tutup popup
+  closePopup.addEventListener("click", () => {
+    popup.classList.remove("active");
+    trailerFrame.src = "";
+  });
+</script>
+<script type='text/javascript' src='//referredrender.com/24/80/7a/24807af29054aa09c282aaebed9201af.js'></script>
 
 </body>
 </html>
+
+
+<!-- Histats.com  START  (aync)-->
+
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+
+_Hasync.push(['Histats.start', '1,4978236,4,107,170,20,00010000']);
+
+_Hasync.push(['Histats.fasi', '1']);
+
+_Hasync.push(['Histats.track_hits', '']);
+
+(function() {
+
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+
+hs.src = ('//s10.histats.com/js15_as.js');
+
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+
+})();</script>
+
+<noscript><a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?4978236&amp;101" alt="" border="0" /></a></noscript>
+
+<!-- Histats.com  END  -->
+
